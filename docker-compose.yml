@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: "app-test"
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: "postgres-db-test"
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_DB=mydb'
+      - 'POSTGRES_USER=orest'
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
